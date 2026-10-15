@@ -3,829 +3,796 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#080b18">
-<meta name="description" content="KARLLO Store — Discover your next favorite app in the digital universe.">
-<title>KARLLO STORE | Explore Beyond</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#050510">
+<title>KARLLO — Beyond The Ordinary</title>
 
 <style>
 :root {
-  --bg: #070916;
-  --panel: rgba(18, 24, 49, .76);
-  --text: #f5f7ff;
-  --muted: #9ba7c7;
-  --purple: #9270ff;
-  --cyan: #65e4ff;
-  --border: rgba(166, 177, 255, .16);
+  --bg:#050510;
+  --white:#f6f5ff;
+  --muted:#a3a4c5;
+  --purple:#a18aff;
+  --blue:#65e5ff;
+  --pink:#ff79db;
 }
 
-* { box-sizing: border-box; }
+* { box-sizing:border-box; }
+
+html { scroll-behavior:smooth; }
 
 body {
-  margin: 0;
-  color: var(--text);
-  background:
-    radial-gradient(ellipse at 15% 5%, #242052 0, transparent 34%),
-    radial-gradient(ellipse at 90% 28%, #102b4b 0, transparent 32%),
-    var(--bg);
-  font-family: Inter, system-ui, -apple-system, sans-serif;
-  min-height: 100vh;
-  overflow-x: hidden;
+  margin:0;
+  color:var(--white);
+  background:var(--bg);
+  font-family:Inter,system-ui,-apple-system,sans-serif;
+  overflow-x:hidden;
 }
 
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: -1;
-  opacity: .32;
-  background-image:
-    radial-gradient(1px 1px at 10% 20%, white 99%, transparent),
-    radial-gradient(1px 1px at 80% 10%, white 99%, transparent),
-    radial-gradient(2px 2px at 50% 55%, white 99%, transparent),
-    radial-gradient(1px 1px at 90% 80%, white 99%, transparent),
-    radial-gradient(1px 1px at 25% 75%, white 99%, transparent),
-    radial-gradient(1px 1px at 65% 35%, white 99%, transparent);
-  background-size: 240px 240px, 310px 310px, 370px 370px,
-                   280px 280px, 330px 330px, 400px 400px;
+body::selection { background:#a18aff; }
+
+#universe {
+  position:fixed;
+  inset:0;
+  width:100%;
+  height:100%;
+  z-index:-3;
+  pointer-events:none;
 }
 
-button, input, select { font: inherit; }
-button { cursor: pointer; }
+.aurora {
+  position:fixed;
+  width:70vw;
+  height:70vw;
+  border-radius:50%;
+  filter:blur(100px);
+  opacity:.13;
+  z-index:-2;
+  pointer-events:none;
+  animation:aurora 18s ease-in-out infinite alternate;
+}
+
+.aurora.one {
+  background:#7042ff;
+  top:-40vw;
+  left:-20vw;
+}
+
+.aurora.two {
+  background:#00cfff;
+  right:-45vw;
+  top:35vh;
+  animation-delay:-8s;
+}
+
+.noise {
+  position:fixed;
+  inset:0;
+  z-index:-1;
+  pointer-events:none;
+  opacity:.035;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.8'/%3E%3C/svg%3E");
+}
 
 header {
-  max-width: 1200px;
-  margin: auto;
-  padding: 22px 24px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 14px;
+  width:min(1200px,100%);
+  margin:auto;
+  padding:25px 28px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  animation:slideDown 1s both;
 }
 
 .brand {
-  display: flex;
-  align-items: center;
-  gap: 12px;
+  display:flex;
+  align-items:center;
+  gap:12px;
 }
 
-.brand-icon {
-  width: 44px;
-  height: 44px;
-  border-radius: 15px;
-  display: grid;
-  place-items: center;
-  font-size: 22px;
-  background: linear-gradient(140deg, #8d69ff, #39d7ff);
-  color: white;
-  box-shadow: 0 0 30px #745aff50;
+.logo {
+  width:45px;
+  height:45px;
+  display:grid;
+  place-items:center;
+  font-size:25px;
+  border-radius:15px;
+  background:linear-gradient(140deg,#a18aff,#58dfff);
+  color:white;
+  box-shadow:0 0 35px #9575ff55;
+  animation:logoPulse 4s ease-in-out infinite;
 }
 
 .brand-name {
-  font-weight: 900;
-  letter-spacing: 3px;
-  font-size: 19px;
+  font-size:20px;
+  font-weight:950;
+  letter-spacing:4px;
 }
 
-.brand-sub {
-  color: var(--muted);
-  font-size: 10px;
-  letter-spacing: 2px;
-  margin-top: 3px;
+.brand-tag {
+  color:#9395b9;
+  font-size:9px;
+  letter-spacing:3px;
+  margin-top:4px;
 }
 
-.header-right {
-  display: flex;
-  align-items: center;
-  gap: 12px;
+.online {
+  font-size:10px;
+  letter-spacing:1.5px;
+  padding:10px 14px;
+  border:1px solid #65e5ff30;
+  background:#65e5ff08;
+  border-radius:50px;
+  color:#8ff1ff;
 }
 
-.status {
-  border: 1px solid var(--border);
-  padding: 8px 12px;
-  border-radius: 30px;
-  color: #a8fbd4;
-  font-size: 11px;
-  background: #122b293d;
-}
-
-.dots {
-  width: 42px;
-  height: 42px;
-  border-radius: 14px;
-  color: white;
-  border: 1px solid var(--border);
-  background: #ffffff08;
-  font-size: 24px;
-  transition: .2s;
-}
-
-.dots:hover {
-  background: #8b70ff25;
-  border-color: var(--purple);
-  transform: rotate(8deg);
+.online i {
+  display:inline-block;
+  width:6px;
+  height:6px;
+  background:#67ffcb;
+  border-radius:50%;
+  margin-right:7px;
+  box-shadow:0 0 12px #67ffcb;
+  animation:blink 1.5s infinite;
 }
 
 main {
-  max-width: 1120px;
-  margin: auto;
-  padding: 26px 24px 70px;
+  width:min(1100px,100%);
+  margin:auto;
+  padding:45px 25px 100px;
 }
 
 .hero {
-  position: relative;
-  padding: 70px 28px 60px;
-  text-align: center;
-  overflow: hidden;
-  border: 1px solid var(--border);
-  border-radius: 30px;
-  background: linear-gradient(130deg, #171735bb, #101e32aa);
-  box-shadow: 0 24px 90px #00000025;
+  min-height:490px;
+  position:relative;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:60px 12px;
+  isolation:isolate;
 }
 
-.orbit {
-  position: absolute;
-  width: 270px;
-  height: 270px;
-  border: 1px solid #8c7cff25;
-  border-radius: 50%;
-  top: -170px;
-  left: calc(50% - 135px);
-  box-shadow: 0 0 60px #775eff14;
+.hero::before {
+  content:"";
+  position:absolute;
+  width:min(580px,90vw);
+  aspect-ratio:1;
+  border-radius:50%;
+  z-index:-1;
+  background:radial-gradient(circle,#6545ff18 0%,#15255c0b 45%,transparent 70%);
+  animation:breathe 6s ease-in-out infinite;
+}
+
+.planet-system {
+  position:absolute;
+  top:15px;
+  left:50%;
+  transform:translateX(-50%);
+  width:250px;
+  height:250px;
+  z-index:-1;
+  pointer-events:none;
+  opacity:.8;
+}
+
+.planet {
+  position:absolute;
+  width:88px;
+  height:88px;
+  border-radius:50%;
+  left:81px;
+  top:81px;
+  background:
+    radial-gradient(circle at 30% 25%,#ffffff 0%,#b7a3ff 5%,transparent 30%),
+    radial-gradient(circle at 35% 30%,#9876ff,#5038a9 42%,#17183f 75%);
+  box-shadow:inset -16px -12px 25px #050514aa,
+    0 0 35px #886bff55;
+  animation:planetFloat 7s ease-in-out infinite;
+}
+
+.planet-ring {
+  position:absolute;
+  width:190px;
+  height:55px;
+  border:2px solid #9f8bff99;
+  border-radius:50%;
+  top:98px;
+  left:30px;
+  transform:rotate(-24deg);
+  box-shadow:0 0 16px #8d75ff25;
+  animation:ringGlow 5s ease-in-out infinite;
+}
+
+.planet-ring::after {
+  content:"";
+  position:absolute;
+  width:9px;
+  height:9px;
+  top:3px;
+  right:24px;
+  background:#65e5ff;
+  border-radius:50%;
+  box-shadow:0 0 15px #65e5ff;
 }
 
 .eyebrow {
-  display: inline-flex;
-  gap: 8px;
-  align-items: center;
-  color: var(--cyan);
-  font-size: 11px;
-  font-weight: 800;
-  letter-spacing: 3px;
-  border: 1px solid #65e4ff38;
-  background: #65e4ff0c;
-  padding: 9px 13px;
-  border-radius: 30px;
+  margin-top:130px;
+  display:inline-flex;
+  gap:9px;
+  align-items:center;
+  padding:10px 15px;
+  border:1px solid #b7a3ff35;
+  background:#a18aff0b;
+  color:#c3b6ff;
+  font-size:10px;
+  font-weight:800;
+  letter-spacing:2.3px;
+  border-radius:40px;
+  animation:fadeUp .8s .1s both;
 }
 
-.hero h1 {
-  font-size: clamp(38px, 7vw, 74px);
-  letter-spacing: -3px;
-  line-height: 1.06;
-  margin: 23px 0 15px;
-  font-weight: 900;
+.eyebrow span { color:var(--blue); }
+
+h1 {
+  font-size:clamp(43px,8vw,86px);
+  line-height:1.01;
+  letter-spacing:-5px;
+  margin:26px 0 20px;
+  font-weight:950;
+  animation:fadeUp 1s .2s both;
 }
 
-.gradient-text {
-  background: linear-gradient(95deg, #a995ff, #65e4ff 65%, #c7b8ff);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+.gradient {
+  background:linear-gradient(100deg,#c0b0ff 5%,#73e7ff 48%,#ff9ce8 85%);
+  background-size:200% auto;
+  color:transparent;
+  -webkit-background-clip:text;
+  background-clip:text;
+  animation:gradientMove 6s linear infinite;
 }
 
-.hero p {
-  color: var(--muted);
-  line-height: 1.8;
-  max-width: 490px;
-  margin: auto;
-  font-size: 14px;
+.hero-description {
+  max-width:490px;
+  color:var(--muted);
+  font-size:14px;
+  line-height:1.9;
+  margin:0 auto;
+  animation:fadeUp 1s .35s both;
 }
 
-.search-wrap {
-  max-width: 530px;
-  margin: 30px auto 0;
-  position: relative;
+.search {
+  width:min(490px,100%);
+  margin-top:32px;
+  position:relative;
+  animation:fadeUp 1s .5s both;
 }
 
-.search-wrap span {
-  position: absolute;
-  top: 14px;
-  left: 17px;
-  color: var(--muted);
+.search span {
+  position:absolute;
+  left:18px;
+  top:14px;
+  font-size:19px;
+  color:#a9a0ff;
 }
 
-.search-wrap input {
-  width: 100%;
-  padding: 15px 18px 15px 46px;
-  color: white;
-  border: 1px solid var(--border);
-  outline: none;
-  background: #060a18bb;
-  border-radius: 15px;
-  transition: .2s;
+.search input {
+  width:100%;
+  padding:17px 18px 17px 48px;
+  border-radius:17px;
+  outline:none;
+  color:white;
+  background:#ffffff08;
+  border:1px solid #aaa2ff2b;
+  backdrop-filter:blur(15px);
+  transition:.3s;
 }
 
-.search-wrap input:focus {
-  border-color: var(--purple);
-  box-shadow: 0 0 25px #9270ff20;
+.search input:focus {
+  border-color:#9e8aff;
+  box-shadow:0 0 35px #8e6cff20;
+}
+
+.scroll-hint {
+  display:flex;
+  align-items:center;
+  gap:10px;
+  color:#8587a9;
+  font-size:9px;
+  letter-spacing:3px;
+  margin-top:32px;
+  animation:fadeUp 1s .65s both;
+}
+
+.scroll-hint span {
+  width:30px;
+  height:1px;
+  background:linear-gradient(90deg,transparent,#a18aff);
 }
 
 .section-head {
-  display: flex;
-  align-items: end;
-  justify-content: space-between;
-  gap: 14px;
-  margin: 43px 0 20px;
+  display:flex;
+  justify-content:space-between;
+  align-items:end;
+  gap:15px;
+  margin:50px 0 24px;
+  animation:fadeUp .8s both;
+}
+
+.kicker {
+  color:#9d8aff;
+  font-size:10px;
+  letter-spacing:3px;
+  font-weight:800;
+  margin-bottom:12px;
 }
 
 .section-head h2 {
-  font-size: 22px;
-  margin: 0 0 7px;
+  font-size:clamp(25px,4vw,35px);
+  letter-spacing:-1px;
+  margin:0;
 }
 
 .section-head p {
-  font-size: 12px;
-  color: var(--muted);
-  margin: 0;
+  color:var(--muted);
+  font-size:12px;
+  margin:10px 0 0;
 }
 
-.count {
-  font-size: 11px;
-  color: var(--cyan);
-  border: 1px solid var(--border);
-  padding: 8px 12px;
-  border-radius: 30px;
+.app-count {
+  border:1px solid #aaa2ff28;
+  border-radius:50px;
+  padding:9px 13px;
+  font-size:10px;
+  white-space:nowrap;
+  color:#bcb1ff;
+  background:#a18aff0b;
 }
 
-.app-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(265px, 1fr));
-  gap: 19px;
+.grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(285px,1fr));
+  gap:22px;
 }
 
-.app-card {
-  position: relative;
-  border-radius: 23px;
-  border: 1px solid var(--border);
-  background: var(--panel);
-  padding: 23px;
-  overflow: hidden;
-  transition: transform .25s, border-color .25s, box-shadow .25s;
-  animation: rise .6s both;
+.card {
+  position:relative;
+  isolation:isolate;
+  overflow:hidden;
+  padding:25px;
+  border:1px solid #a6a7ff21;
+  border-radius:25px;
+  background:linear-gradient(145deg,#17172eeb,#0c1020f2);
+  box-shadow:0 20px 60px #00000022;
+  opacity:0;
+  animation:cardIn .8s forwards;
+  transition:transform .35s,border-color .35s,box-shadow .35s;
 }
 
-.app-card::after {
-  content: "";
-  position: absolute;
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-  top: -80px;
-  right: -60px;
-  background: #8b70ff20;
-  filter: blur(12px);
+.card::before {
+  content:"";
+  position:absolute;
+  z-index:-1;
+  width:200px;
+  height:200px;
+  top:var(--mouse-y, -130px);
+  left:var(--mouse-x, 75%);
+  border-radius:50%;
+  background:radial-gradient(circle,#9270ff24,transparent 70%);
+  pointer-events:none;
 }
 
-.app-card:hover {
-  transform: translateY(-5px);
-  border-color: #9270ff77;
-  box-shadow: 0 18px 50px #00000038;
+.card::after {
+  content:"";
+  position:absolute;
+  left:-120%;
+  top:0;
+  width:65%;
+  height:100%;
+  transform:skewX(-22deg);
+  background:linear-gradient(90deg,transparent,#ffffff08,transparent);
+  transition:left .8s;
+  pointer-events:none;
 }
 
-.app-top {
-  display: flex;
-  align-items: center;
-  gap: 15px;
+.card:hover {
+  transform:translateY(-9px) scale(1.012);
+  border-color:#a18aff80;
+  box-shadow:0 25px 70px #765bff19,0 0 0 1px #a18aff0b;
 }
 
-.app-logo {
-  width: 68px;
-  height: 68px;
-  border-radius: 21px;
-  flex-shrink: 0;
-  display: grid;
-  place-items: center;
-  background: linear-gradient(145deg, #8c6bff, #242f75);
-  border: 1px solid #ffffff25;
-  font-size: 28px;
-  font-weight: 900;
-  box-shadow: inset 0 1px #ffffff30, 0 8px 25px #7656ff25;
+.card:hover::after { left:150%; }
+
+.card-top {
+  display:flex;
+  align-items:center;
+  gap:16px;
 }
+
+.app-icon {
+  width:72px;
+  height:72px;
+  flex-shrink:0;
+  border-radius:22px;
+  display:grid;
+  place-items:center;
+  font-size:30px;
+  font-weight:900;
+  background:linear-gradient(140deg,#8c73ff,#3c56b4 70%,#172147);
+  border:1px solid #ffffff24;
+  box-shadow:inset 0 1px #ffffff50,0 8px 35px #8263ff20;
+  position:relative;
+  transition:transform .4s;
+}
+
+.card:hover .app-icon { transform:rotate(-7deg) scale(1.08); }
 
 .app-name {
-  font-size: 18px;
-  font-weight: 800;
-  margin-bottom: 6px;
+  font-size:19px;
+  font-weight:850;
+  letter-spacing:-.3px;
+  margin-bottom:8px;
 }
 
-.app-category {
-  font-size: 11px;
-  color: var(--cyan);
-  letter-spacing: 1px;
+.category {
+  font-size:9px;
+  color:#81e8ff;
+  letter-spacing:1.5px;
 }
 
-.app-desc {
-  color: var(--muted);
-  font-size: 13px;
-  line-height: 1.8;
-  min-height: 46px;
-  margin: 19px 0;
+.description {
+  color:#a5a7c4;
+  font-size:12px;
+  line-height:1.9;
+  min-height:47px;
+  margin:22px 0;
 }
 
-.app-meta {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-  border-top: 1px solid var(--border);
-  padding-top: 15px;
-  font-size: 11px;
-  color: var(--muted);
+.meta {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+  padding-top:17px;
+  border-top:1px solid #ffffff10;
+  font-size:10px;
+  color:#9b9db9;
 }
 
 .version {
-  color: #d4caff;
-  background: #9270ff17;
-  border: 1px solid #9270ff35;
-  padding: 6px 9px;
-  border-radius: 9px;
+  border:1px solid #a18aff35;
+  border-radius:9px;
+  background:#a18aff10;
+  color:#c9bcff;
+  padding:7px 10px;
 }
 
 .download {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 8px;
-  width: 100%;
-  margin-top: 17px;
-  padding: 13px;
-  border-radius: 13px;
-  border: 1px solid #ffffff20;
-  text-decoration: none;
-  color: white;
-  font-size: 13px;
-  font-weight: 800;
-  background: linear-gradient(100deg, #7358e8, #416de7);
-  box-shadow: 0 7px 22px #5b55d529;
-  transition: .2s;
+  position:relative;
+  overflow:hidden;
+  margin-top:19px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  width:100%;
+  text-decoration:none;
+  color:white;
+  font-size:12px;
+  font-weight:850;
+  letter-spacing:.3px;
+  padding:15px;
+  border:1px solid #ffffff1c;
+  border-radius:14px;
+  background:linear-gradient(105deg,#7955ef,#486ce8,#7363ff);
+  background-size:200% 100%;
+  box-shadow:0 8px 25px #644ce529;
+  transition:transform .25s,box-shadow .25s,background-position .5s;
 }
 
 .download:hover {
-  filter: brightness(1.16);
-  box-shadow: 0 8px 30px #5b55d54d;
-  transform: translateY(-1px);
+  transform:translateY(-2px);
+  background-position:100% 0;
+  box-shadow:0 12px 35px #644ce54a;
 }
 
+.download .arrow { font-size:18px; }
+
 .empty {
-  display: none;
-  text-align: center;
-  padding: 40px 10px;
-  color: var(--muted);
-  border: 1px dashed var(--border);
-  border-radius: 20px;
+  display:none;
+  text-align:center;
+  color:var(--muted);
+  padding:45px 10px;
+  border:1px dashed #ffffff20;
+  border-radius:20px;
 }
 
 footer {
-  text-align: center;
-  color: #737e9f;
-  font-size: 11px;
-  border-top: 1px solid var(--border);
-  padding: 25px 15px 35px;
-  letter-spacing: .5px;
+  text-align:center;
+  padding:30px 18px 40px;
+  border-top:1px solid #ffffff0d;
+  color:#7f829f;
+  font-size:10px;
+  letter-spacing:1px;
+  line-height:2;
 }
 
-footer strong { color: #c7b8ff; }
-
-.modal-backdrop {
-  display: none;
-  position: fixed;
-  inset: 0;
-  z-index: 10;
-  background: #03040bd9;
-  backdrop-filter: blur(12px);
-  align-items: center;
-  justify-content: center;
-  padding: 18px;
+footer strong {
+  color:#c3b6ff;
+  letter-spacing:3px;
 }
 
-.modal-backdrop.show { display: flex; }
-
-.modal {
-  width: 100%;
-  max-width: 410px;
-  max-height: 90vh;
-  overflow-y: auto;
-  padding: 26px;
-  border: 1px solid #9270ff55;
-  border-radius: 23px;
-  background: linear-gradient(145deg, #171933, #0b1022);
-  box-shadow: 0 25px 100px #0008;
-  animation: rise .25s both;
+@keyframes slideDown {
+  from {opacity:0;transform:translateY(-22px)}
+  to {opacity:1;transform:translateY(0)}
+}
+@keyframes fadeUp {
+  from {opacity:0;transform:translateY(22px)}
+  to {opacity:1;transform:translateY(0)}
+}
+@keyframes cardIn {
+  to {opacity:1;transform:translateY(0)}
+}
+@keyframes planetFloat {
+  0%,100% {transform:translateY(0) rotate(-5deg)}
+  50% {transform:translateY(-13px) rotate(5deg)}
+}
+@keyframes breathe {
+  0%,100% {transform:scale(.9);opacity:.55}
+  50% {transform:scale(1.12);opacity:1}
+}
+@keyframes aurora {
+  from {transform:translate(0,0) scale(1)}
+  to {transform:translate(8vw,5vh) scale(1.25)}
+}
+@keyframes logoPulse {
+  0%,100% {box-shadow:0 0 22px #9575ff40}
+  50% {box-shadow:0 0 42px #65e5ff60}
+}
+@keyframes blink {
+  0%,100% {opacity:1}
+  50% {opacity:.35}
+}
+@keyframes ringGlow {
+  0%,100% {opacity:.55}
+  50% {opacity:1}
+}
+@keyframes gradientMove {
+  to {background-position:200% center}
 }
 
-.modal-head {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  margin-bottom: 22px;
+@media(max-width:600px) {
+  header {padding:19px 17px}
+  main {padding:25px 16px 70px}
+  .brand-name {font-size:17px}
+  .online {font-size:8px;padding:9px}
+  .hero {min-height:440px;padding-top:35px}
+  h1 {letter-spacing:-2.5px}
+  .planet-system {transform:translateX(-50%) scale(.85)}
+  .section-head {align-items:start}
+  .section-head h2 {font-size:25px}
+  .grid {grid-template-columns:1fr}
+  .card {padding:22px}
 }
 
-.modal h3 { margin: 0; font-size: 19px; }
-.modal-sub { color: var(--muted); font-size: 12px; margin-top: 7px; }
-
-.close {
-  border: 1px solid var(--border);
-  color: white;
-  background: #ffffff08;
-  border-radius: 10px;
-  width: 36px;
-  height: 36px;
-  font-size: 19px;
-}
-
-.field { margin-top: 17px; }
-.field label {
-  display: block;
-  font-size: 12px;
-  color: #c0c8e3;
-  margin-bottom: 8px;
-}
-
-.field input, .field select {
-  width: 100%;
-  padding: 13px;
-  border-radius: 12px;
-  color: white;
-  border: 1px solid var(--border);
-  outline: none;
-  background: #070b19;
-}
-
-.field input:focus, .field select:focus {
-  border-color: var(--purple);
-}
-
-.field select option { background: #11152a; }
-
-.action {
-  width: 100%;
-  margin-top: 19px;
-  padding: 13px;
-  border-radius: 12px;
-  border: none;
-  background: linear-gradient(100deg, #8a68ff, #4d7dff);
-  color: white;
-  font-weight: 800;
-}
-
-.secondary {
-  background: #ffffff08;
-  border: 1px solid var(--border);
-}
-
-.message {
-  font-size: 12px;
-  margin-top: 13px;
-  color: #ff9eae;
-  min-height: 15px;
-}
-
-.notice {
-  font-size: 11px;
-  color: var(--muted);
-  line-height: 1.7;
-  margin-top: 15px;
-}
-
-@keyframes rise {
-  from { opacity: 0; transform: translateY(12px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-@media (max-width: 600px) {
-  header { padding: 17px 16px; }
-  main { padding: 15px 15px 45px; }
-  .hero { padding: 54px 17px 42px; border-radius: 23px; }
-  .hero h1 { letter-spacing: -2px; }
-  .brand-name { font-size: 16px; }
-  .status { display: none; }
-  .app-grid { grid-template-columns: 1fr; }
+@media(prefers-reduced-motion:reduce) {
+  *,*::before,*::after {
+    animation-duration:.01ms !important;
+    animation-iteration-count:1 !important;
+    scroll-behavior:auto !important;
+    transition-duration:.01ms !important;
+  }
 }
 </style>
 </head>
 
 <body>
+<canvas id="universe" aria-hidden="true"></canvas>
+<div class="aurora one"></div>
+<div class="aurora two"></div>
+<div class="noise"></div>
+
 <header>
   <div class="brand">
-    <div class="brand-icon">✦</div>
+    <div class="logo">✦</div>
     <div>
       <div class="brand-name">KARLLO</div>
-      <div class="brand-sub">DIGITAL UNIVERSE</div>
+      <div class="brand-tag">BEYOND THE ORDINARY</div>
     </div>
   </div>
-
-  <div class="header-right">
-    <div class="status">● SYSTEM ONLINE</div>
-    <button class="dots" id="menuButton" aria-label="More options">⋮</button>
-  </div>
+  <div class="online"><i></i> ALL SYSTEMS ONLINE</div>
 </header>
 
 <main>
   <section class="hero">
-    <div class="orbit"></div>
-    <div class="eyebrow">✧ YOUR NEXT DIGITAL DISCOVERY</div>
-    <h1>Explore Beyond.<br><span class="gradient-text">Enter KARLLO.</span></h1>
-    <p>
-      Discover apps built for the future.
-      One universe, new possibilities.
+    <div class="planet-system" aria-hidden="true">
+      <div class="planet"></div>
+      <div class="planet-ring"></div>
+    </div>
+
+    <div class="eyebrow"><span>✧</span> THE NEXT DIGITAL FRONTIER</div>
+    <h1>Enter a New<br><span class="gradient">Universe.</span></h1>
+    <p class="hero-description">
+      Discover extraordinary applications designed to move your digital
+      world forward. Your next favorite app is out there.
     </p>
 
-    <div class="search-wrap">
+    <div class="search">
       <span>⌕</span>
-      <input id="searchInput" type="search"
-        placeholder="Search your next app..." aria-label="Search apps">
+      <input id="search" type="search"
+        placeholder="Search the universe..."
+        aria-label="Search apps">
     </div>
+
+    <div class="scroll-hint"><span></span> DISCOVER YOUR NEXT APP <span></span></div>
   </section>
 
-  <section>
+  <section id="apps">
     <div class="section-head">
       <div>
-        <h2>Explore Apps</h2>
-        <p>Handpicked experiences from the KARLLO universe.</p>
+        <div class="kicker">THE COLLECTION</div>
+        <h2>Explore the <span class="gradient">Universe.</span></h2>
+        <p>Powerful tools. Fresh possibilities. One destination.</p>
       </div>
-      <div class="count" id="appCount">01 APP</div>
+      <div class="app-count" id="count">01 APPLICATION</div>
     </div>
 
-    <div class="app-grid" id="appGrid"></div>
-    <div class="empty" id="emptyState">No apps found. Try another search.</div>
+    <div class="grid" id="grid"></div>
+    <div class="empty" id="empty">No apps found in this universe.</div>
   </section>
 </main>
 
 <footer>
-  <strong>KARLLO STORE</strong> · Explore Beyond · Built for the future
+  <strong>KARLLO</strong><br>
+  EXPLORE BEYOND · BUILD WITHOUT LIMITS<br>
+  © <span id="year"></span> KARLLO STORE
 </footer>
 
-<!-- Admin login -->
-<div class="modal-backdrop" id="loginModal">
-  <div class="modal">
-    <div class="modal-head">
-      <div>
-        <h3>Restricted Access</h3>
-        <div class="modal-sub">KARLLO owner authentication</div>
-      </div>
-      <button class="close" data-close="loginModal">×</button>
-    </div>
-
-    <form id="loginForm">
-      <div class="field">
-        <label for="adminPassword">Admin password</label>
-        <input id="adminPassword" type="password"
-          placeholder="Enter password" autocomplete="current-password" required>
-      </div>
-      <button class="action" type="submit">Unlock Admin</button>
-      <div class="message" id="loginMessage"></div>
-    </form>
-    <div class="notice">Owner tools are restricted. Close this window to return to the store.</div>
-  </div>
-</div>
-
-<!-- Version editor -->
-<div class="modal-backdrop" id="editorModal">
-  <div class="modal">
-    <div class="modal-head">
-      <div>
-        <h3>App Version Editor</h3>
-        <div class="modal-sub">Edit the version label shown on an app card.</div>
-      </div>
-      <button class="close" data-close="editorModal">×</button>
-    </div>
-
-    <div class="field">
-      <label for="appSelect">Select app</label>
-      <select id="appSelect"></select>
-    </div>
-
-    <div class="field">
-      <label for="versionInput">Version text</label>
-      <input id="versionInput" type="text"
-        placeholder="e.g. v1.2.0" maxlength="30">
-    </div>
-
-    <button class="action" id="saveVersion">Save Version</button>
-    <button class="action secondary" id="resetVersion">Reset to Default</button>
-    <div class="message" id="editorMessage"></div>
-    <div class="notice">
-      This saves the label in this browser only. It does not upload an APK
-      or change the version for other visitors.
-    </div>
-  </div>
-</div>
-
 <script>
-"use strict";
-
-/*
-  Add future apps to this list.
-  Each app needs a unique id, name, category, description,
-  version, icon and download URL.
-*/
 const apps = [
   {
     id: "karllo-ai",
     name: "KARLLO AI",
     category: "ARTIFICIAL INTELLIGENCE",
-    description: "Meet your AI companion. Explore ideas, ask questions and discover what's possible.",
+    description: "Your AI companion for ideas, questions and discovering new possibilities in one place.",
     version: "v1.0.0",
     icon: "K",
-    size: "Android APK",
+    details: "Android APK",
     download: "https://github.com/sahinahmadruman2-arch/karllo-ai/raw/refs/heads/main/apks/UrBots7.apk"
   }
 ];
 
-const VERSION_KEY = "karllo_store_versions_v1";
-const ADMIN_PASSWORD = "sahin#999#";
+const grid = document.getElementById("grid");
+const search = document.getElementById("search");
 
-const grid = document.getElementById("appGrid");
-const searchInput = document.getElementById("searchInput");
-const appCount = document.getElementById("appCount");
-const emptyState = document.getElementById("emptyState");
-const loginModal = document.getElementById("loginModal");
-const editorModal = document.getElementById("editorModal");
-const appSelect = document.getElementById("appSelect");
-const versionInput = document.getElementById("versionInput");
-
-function getSavedVersions() {
-  try {
-    return JSON.parse(localStorage.getItem(VERSION_KEY) || "{}");
-  } catch {
-    return {};
-  }
+function safe(text) {
+  return String(text).replace(/[&<>"']/g, c => ({
+    "&":"&amp;", "<":"&lt;", ">":"&gt;",
+    '"':"&quot;", "'":"&#39;"
+  })[c]);
 }
 
-function getVersion(app) {
-  return getSavedVersions()[app.id] || app.version;
-}
-
-function renderApps() {
-  const query = searchInput.value.trim().toLowerCase();
-
-  const filtered = apps.filter(app =>
-    [app.name, app.category, app.description]
-      .join(" ")
-      .toLowerCase()
-      .includes(query)
+function render() {
+  const q = search.value.trim().toLowerCase();
+  const list = apps.filter(a =>
+    [a.name, a.category, a.description].join(" ").toLowerCase().includes(q)
   );
 
-  grid.innerHTML = filtered.map((app, index) => `
-    <article class="app-card" style="animation-delay:${index * 70}ms">
-      <div class="app-top">
-        <div class="app-logo">${escapeHTML(app.icon)}</div>
+  grid.innerHTML = list.map((a, i) => `
+    <article class="card" style="animation-delay:${i * 130}ms">
+      <div class="card-top">
+        <div class="app-icon">${safe(a.icon)}</div>
         <div>
-          <div class="app-name">${escapeHTML(app.name)}</div>
-          <div class="app-category">${escapeHTML(app.category)}</div>
+          <div class="app-name">${safe(a.name)}</div>
+          <div class="category">${safe(a.category)}</div>
         </div>
       </div>
-
-      <p class="app-desc">${escapeHTML(app.description)}</p>
-
-      <div class="app-meta">
-        <span>${escapeHTML(app.size)}</span>
-        <span class="version">${escapeHTML(getVersion(app))}</span>
+      <p class="description">${safe(a.description)}</p>
+      <div class="meta">
+        <span>${safe(a.details)}</span>
+        <span class="version">${safe(a.version)}</span>
       </div>
-
-      <a class="download"
-         href="${escapeHTML(app.download)}"
-         target="_blank" rel="noopener noreferrer">
-         ↓ &nbsp; Download App
+      <a class="download" href="${safe(a.download)}"
+        target="_blank" rel="noopener noreferrer">
+        <span class="arrow">↓</span> DOWNLOAD APPLICATION
       </a>
     </article>
   `).join("");
 
-  appCount.textContent =
-    String(filtered.length).padStart(2, "0") +
-    (filtered.length === 1 ? " APP" : " APPS");
+  document.getElementById("count").textContent =
+    String(list.length).padStart(2, "0") +
+    (list.length === 1 ? " APPLICATION" : " APPLICATIONS");
 
-  emptyState.style.display = filtered.length ? "none" : "block";
+  document.getElementById("empty").style.display =
+    list.length ? "none" : "block";
 }
 
-function escapeHTML(value) {
-  return String(value).replace(/[&<>"']/g, char => ({
-    "&": "&amp;",
-    "<": "&lt;",
-    ">": "&gt;",
-    '"': "&quot;",
-    "'": "&#39;"
-  })[char]);
+search.addEventListener("input", render);
+document.getElementById("year").textContent = new Date().getFullYear();
+
+/* Animated starfield, with a lighter particle count on phones. */
+const canvas = document.getElementById("universe");
+const ctx = canvas.getContext("2d");
+let stars = [];
+let width = 0, height = 0, dpr = 1;
+let frame = 0;
+
+function setupSpace() {
+  dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+  width = window.innerWidth;
+  height = window.innerHeight;
+  canvas.width = Math.round(width * dpr);
+  canvas.height = Math.round(height * dpr);
+  canvas.style.width = width + "px";
+  canvas.style.height = height + "px";
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+  const count = Math.min(150, Math.max(55, Math.floor(width / 5)));
+  stars = Array.from({length: count}, () => ({
+    x: Math.random() * width,
+    y: Math.random() * height,
+    r: Math.random() * 1.4 + .25,
+    alpha: Math.random() * .65 + .15,
+    speed: Math.random() * .22 + .035,
+    phase: Math.random() * Math.PI * 2
+  }));
 }
 
-function populateAppSelect() {
-  appSelect.innerHTML = apps.map(app =>
-    `<option value="${escapeHTML(app.id)}">${escapeHTML(app.name)}</option>`
-  ).join("");
+function animateSpace() {
+  ctx.clearRect(0, 0, width, height);
+  frame += .012;
+
+  for (const s of stars) {
+    s.y += s.speed;
+    if (s.y > height + 4) {
+      s.y = -4;
+      s.x = Math.random() * width;
+    }
+
+    const pulse = .65 + .35 * Math.sin(frame + s.phase);
+    ctx.beginPath();
+    ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(200,215,255,${s.alpha * pulse})`;
+    ctx.fill();
+
+    if (s.r > 1.25) {
+      ctx.beginPath();
+      ctx.arc(s.x, s.y, s.r * 3.5, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(116,150,255,${s.alpha * pulse * .07})`;
+      ctx.fill();
+    }
+  }
+
+  requestAnimationFrame(animateSpace);
 }
 
-function loadSelectedVersion() {
-  const app = apps.find(item => item.id === appSelect.value);
-  if (app) versionInput.value = getVersion(app);
+if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+  setupSpace();
+  animateSpace();
+  window.addEventListener("resize", setupSpace);
+} else {
+  setupSpace();
+  for (const s of stars) {
+    ctx.beginPath();
+    ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+    ctx.fillStyle = "#aebfff88";
+    ctx.fill();
+  }
 }
 
-function showModal(modal) {
-  modal.classList.add("show");
-}
+/* Subtle pointer-reactive glow on app cards. */
+grid.addEventListener("pointermove", event => {
+  const card = event.target.closest(".card");
+  if (!card) return;
 
-function hideModal(modal) {
-  modal.classList.remove("show");
-}
-
-document.getElementById("menuButton").addEventListener("click", () => {
-  document.getElementById("adminPassword").value = "";
-  document.getElementById("loginMessage").textContent = "";
-  showModal(loginModal);
+  const rect = card.getBoundingClientRect();
+  card.style.setProperty("--mouse-x", (event.clientX - rect.left) + "px");
+  card.style.setProperty("--mouse-y", (event.clientY - rect.top) + "px");
 });
 
-document.querySelectorAll("[data-close]").forEach(button => {
-  button.addEventListener("click", () => {
-    hideModal(document.getElementById(button.dataset.close));
-  });
-});
-
-[loginModal, editorModal].forEach(modal => {
-  modal.addEventListener("click", event => {
-    if (event.target === modal) hideModal(modal);
-  });
-});
-
-document.getElementById("loginForm").addEventListener("submit", event => {
-  event.preventDefault();
-
-  const password = document.getElementById("adminPassword").value;
-  const message = document.getElementById("loginMessage");
-
-  if (password === ADMIN_PASSWORD) {
-    hideModal(loginModal);
-    populateAppSelect();
-    loadSelectedVersion();
-    document.getElementById("editorMessage").textContent = "";
-    showModal(editorModal);
-  } else {
-    message.textContent = "Incorrect password. Try again.";
-  }
-});
-
-appSelect.addEventListener("change", loadSelectedVersion);
-
-document.getElementById("saveVersion").addEventListener("click", () => {
-  const app = apps.find(item => item.id === appSelect.value);
-  const version = versionInput.value.trim();
-  const message = document.getElementById("editorMessage");
-
-  if (!app) {
-    message.textContent = "Please select an app.";
-    return;
-  }
-
-  if (!version) {
-    message.textContent = "Please enter a version label.";
-    return;
-  }
-
-  try {
-    const versions = getSavedVersions();
-    versions[app.id] = version;
-    localStorage.setItem(VERSION_KEY, JSON.stringify(versions));
-
-    renderApps();
-    message.style.color = "#a8fbd4";
-    message.textContent = "Version saved in this browser.";
-  } catch {
-    message.style.color = "#ff9eae";
-    message.textContent = "Could not save. Check browser storage settings.";
-  }
-});
-
-document.getElementById("resetVersion").addEventListener("click", () => {
-  const app = apps.find(item => item.id === appSelect.value);
-  const message = document.getElementById("editorMessage");
-
-  if (!app) return;
-
-  const versions = getSavedVersions();
-  delete versions[app.id];
-
-  try {
-    localStorage.setItem(VERSION_KEY, JSON.stringify(versions));
-    versionInput.value = app.version;
-    renderApps();
-    message.style.color = "#a8fbd4";
-    message.textContent = "Default version restored in this browser.";
-  } catch {
-    message.style.color = "#ff9eae";
-    message.textContent = "Could not save the change.";
-  }
-});
-
-searchInput.addEventListener("input", renderApps);
-
-document.addEventListener("keydown", event => {
-  if (event.key === "Escape") {
-    hideModal(loginModal);
-    hideModal(editorModal);
-  }
-});
-
-renderApps();
+render();
 </script>
 </body>
 </html>
